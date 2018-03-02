@@ -1,0 +1,62 @@
+<<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Homework WK 3 Hangman Game</title>
+
+<!--  Added Link to Bootstrap library -->
+    <link rel="stylesheet"
+    href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+
+
+  <!-- Added link to the jQuery Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+</head>
+<body>
+
+
+    <h1>Lets play HANGMAN - CITIES of the WORLD! Press ANY LETTER to get started</h1>
+
+    <div id=themeBkgrnd  src="/assets/images/WorldBkgrnd"></div>
+
+
+    <script type="text/javascript">
+
+//       var GGuess = 0
+//       var GRemain = 0
+//       var Gwins = 0
+ //      var Glosses = 0
+
+       var WCities =['London', 'Chichen Itza', 'Sydney', 'Vancouver', 'Moscow', 'Tokyo', 'Vinicuna', 'Toronto', 'Chicago'];
+       var CLetters = [];
+       var j = '-';
+
+    // Load the dashes for the length of the city name
+    // Load the full name into WCName
+    function LoadDashes () {
+
+        WCities.split(',')
+        for (var i = 0; i < WCities.length; i++) {
+            var WCName = WCities[i];
+            var WCityIndex = WCName.length   
+            for (var NameStr = 0;  NameStr < WCityIndex; ns++) {
+               CLetters[NameStr] = j;
+               console.log(WCityIndex);
+            }
+        console.log(CLetters);
+        }    
+    }
+    </script> 
+
+
+
+
+
+
+
+
+</body>
+</html>
