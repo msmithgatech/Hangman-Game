@@ -6,9 +6,9 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Homework WK 3 Hangman Game</title>
 
-<!--  Added Link to Bootstrap library -->
+  <!--  Added Link to Bootstrap library -->
     <link rel="stylesheet"
-    href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
 
 
   <!-- Added link to the jQuery Library -->
@@ -17,46 +17,161 @@
 </head>
 <body>
 
+    <!-- Theme background and Heading -->
 
-    <h1>Lets play HANGMAN - CITIES of the WORLD! Press ANY LETTER to get started</h1>
+    <div id="themeBkgrnd" type="image" src="/assets/images/RoomwithView.jpg"></div>
+    <h3>Let's play Hangman Cities of the WORLD!</h3>
+    <h4>Press any key to start</h4>
 
-    <div id=themeBkgrnd  src="/assets/images/WorldBkgrnd"></div>
-
-
+    <div id="CityNameDisp"></div>
+  
+    <!-- GENERIC placeholder for the scores -->
+    <div id="ScoreDiv" style="font-style: italic;">
+    
+    
     <script type="text/javascript">
+    //  GLOBAL VARIABLES
 
-//       var GGuess = 0
-//       var GRemain = 0
-//       var Gwins = 0
- //      var Glosses = 0
+        var WCities = [  
+            London,
+    //      'Chichen Itza',
+            Sydney
+     //     Vancouver
+     //     Moscow
+     //     Tokyo
+     //     Vinicuna
+     //     Toronto
+     //     Chicago
+       ]
+    
+         
+        var TotCities = 0
+        var WCName = []
+        var WCNLength = 0
+        var DashName = " "
+       
 
-       var WCities =['London', 'Chichen Itza', 'Sydney', 'Vancouver', 'Moscow', 'Tokyo', 'Vinicuna', 'Toronto', 'Chicago'];
-       var CLetters = [];
-       var j = '-';
+        var inkey = ""
+        var NContains = 0
+        var LtrInsrtd = " "
 
-    // Load the dashes for the length of the city name
+        var KeysPressd = " "
+        var GGuess = 0
+        var GRemain = 0
+        var UWin = 0
+        var ULost = 0
+        var FWin = 0
+        var FLost = 0
+
+
+
     // Load the full name into WCName
-    function LoadDashes () {
-
-        WCities.split(',')
-        for (var i = 0; i < WCities.length; i++) {
-            var WCName = WCities[i];
-            var WCityIndex = WCName.length   
-            for (var NameStr = 0;  NameStr < WCityIndex; ns++) {
-               CLetters[NameStr] = j;
-               console.log(WCityIndex);
-            }
-        console.log(CLetters);
-        }    
+    // Build the table of dashes
+    
+    function LoadDashes(WCName) {
+        DashName = WCName.replace("-");
+        return DashName
     }
-    </script> 
+    
+    function MatchNoMatch(WCName, inkey) {
+        
+        NContains = WCName.match(/inkey/gi);
+        return NContains
+    }
+
+    function InsrtLetter(WCName, inkey) {
+        LtrInsrtd = (WCName.replace(/inkey/gi));
+        return LtrInsrtd
+    }
+
+    // Function that updates the FINAL scores...
+    function FinalScores() {
+        document.querySelector("#ScoreDiv").innerHTML = "Final Scores: ";
+        document.write("#ScoreDiv");
+        document.querySelector("#ScoreDiv").innerHTML = "    Wins: " + FWin;
+        document.write("#ScoreDiv"); 
+        document.querySelector("#ScoreDiv").innerHTML = "    Losses: " + FLost;
+        document.write("#ScoreDiv")
+    }
 
 
+    // Function to keep score during play
+    function GameScores() {
+        document.querySelector("#ScoreDiv").innerHTML = 'Letters Guessed: ' + GGuess;
+        document.write("#ScoreDiv");
+        document.querySelector("#ScoreDiv").innerHTML = 'Remainimg Guesses: ' + GRemain;
+        document.write("#ScoreDiv");
+        document.querySelector("#ScoreDiv").innerHTML = 'Wins: ' + UWin; 
+        document.write("#ScoreDiv");
+        document.querySelector("#ScoreDiv").innerHTML = 'Losses: ' + ULost;
+        document.write("#ScoreDiv")
+      }
 
+    function GameScores() {
+        document.querySelector("#ScoreDiv").innerHTML = "Please enter a letter of the alphabet"
+        document.write("#ScoreDiv")
+    }
+    // ======== PROGRAM PROCESSING  ======================================
+    // ====================================================================
+      //  Split the list of cities
+      //  Load and display the first set of dashes
+    
+    $('document').ready(function() {
+         
+       WCName = WCities.split(',')
+       for (var cLoopDX = 0; cLoopDX <= WCName.length; cLoopDX++) {
+                //  First time thru?
+          if ((FWin = 0) && (FLost = 0)) {
+               TotCities = WCName.length;
+               WCName[0];
+          }
+          else { 
+                 WCName = WCities[cLoopDX]
+          }
+                   
+          WCNLength = WCName.length
+          LoadDashes(WCName);
+          document.write("#h3")
+          document.getElementById("#ScoreDiv").innerHTML 
+                   = "You have " + WCNLength + " letters to guess"
+          document.write("#ScoreDiv")
 
+          $("body").onkeyup(function() {
+               //  Accept Users keypress, CONTINUE if its a letter 
+            if (onkeyup.keyCode >= 65 && onkeyup.keyCode <= 90) !!
+               (onkeyup.keyCode >= 97 && onkeyup.keyCode <= 122)
+          
+               inkey = onkeyup.value
 
+               MatchNoMatch(WCName, inkey);
+               if (NContains < 0) {
+                     //  NO MATCH 
+                 GRemain-=
+                 document.getElementById("#ScoreDiv").innerHTML = "You have " + GRemain 
+                                                      + " guesses remaining"
+                 document.getElementById("#ScoreDiv").innerHTML = "Letters selected: " 
+                                                      + GRemain 
+                 document.write("#ScoreDiv")                  
+               } 
+               else if (GRemain >= 0) {          //  ON MATCH Any guesses remaining?
+                            // replace dash with each instance of KEYPRESS
+                     InsrtLetter(WCName, inkey);
+                     document.getElementById("#ScoreDiv").innerHTML = "You have " + GRemain 
+                                                        + " guesses remaining";
+                     document.write("#ScoreDiv");
+               }
+               else {        
+                        //    Win or lose?
+                     TallytheRound()
+                     GameScores()
+               }
+               });
+            NeedLetter()      // KEYPRESS was not a letter   
+          };      //  END ON KEYUP         
+        });     //  END FOR EACH
+    ; 
+    // END DOCUMENT READY
 
-
-
+</script> 
 </body>
 </html>
